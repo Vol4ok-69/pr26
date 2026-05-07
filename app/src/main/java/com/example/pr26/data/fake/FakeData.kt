@@ -10,19 +10,19 @@ object FakeData {
     val onboardingItems = listOf(
 
         OnboardingItem(
-            imageRes = R.drawable.onboard_1_frame,
+            imageRes = R.drawable.sneakers_with_leg,
             title = "Добро пожаловать",
             description = "Лучшие кроссовки в одном приложении"
         ),
 
         OnboardingItem(
-            imageRes = R.drawable.onboard_2_frame,
+            imageRes = R.drawable.sneakers_2,
             title = "Выбирайте",
             description = "Популярные модели и новинки"
         ),
 
         OnboardingItem(
-            imageRes = R.drawable.onboard_3_frame,
+            imageRes = R.drawable.sneakers_3,
             title = "Покупайте",
             description = "Быстрое оформление заказа"
         )
