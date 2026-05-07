@@ -1,0 +1,200 @@
+Читай задание и все приложенные PNG-макеты.
+прям тз для меня это "ПЗ.26 Наполнение приложения по тестам и в соответствии со структурой (1).docx" в корне проекта
+Нужно полностью сделать Android-приложение на Kotlin + Jetpack Compose.
+НЕ использовать XML/View API.
+Только современный Compose-подход.
+
+Технологии:
+- Kotlin
+- Jetpack Compose
+- Material3
+- Navigation Compose
+- ViewModel
+- Room database
+- UI tests (Compose UI Test)
+
+Сделай структуру проекта сразу нормальной:
+- navigation
+- ui/screens
+- ui/components
+- ui/theme
+- data/local
+- data/model
+- viewmodel
+
+Что нужно реализовать:
+
+1. Onboarding экраны
+- Onboard-1
+- Onboard-2
+- Onboard-3
+- horizontal pager
+- кнопки Next / Skip
+- индикаторы страниц
+- адаптивность portrait + landscape
+
+2. Sign In экран
+- как в макете
+- email + password
+- валидация:
+  - пустые поля
+  - email format
+  - password min length
+- ошибки под полями
+- кнопка disabled если форма невалидна
+
+3. Room Database
+- создать локальную Room БД
+- таблица пользователей
+- добавить 5 тестовых пользователей
+- авторизация проверяет пользователя через БД
+
+4. Home экран
+- максимально похожий на макет
+- категории
+- popular items
+- карточки
+- bottom navigation
+- search bar
+- все изображения в vector drawable или compose icons
+
+5. Catalog экран
+- список товаров
+- lazy column/grid
+- фильтрация по категориям
+- переходы работают
+
+6. Popular экран
+- список популярных товаров
+- карточки
+- адаптивность
+
+7. Навигация
+- все переходы между экранами работают
+- back stack работает корректно
+
+8. Адаптивность
+- ничего не выходит за экран
+- использовать:
+  - safeDrawingPadding()
+  - WindowSizeClass при необходимости
+  - verticalScroll/lazy lists
+- portrait и landscape должны выглядеть нормально
+
+9. Тесты
+Сделать Compose UI tests:
+- onboarding navigation
+- validation sign in
+- successful login
+- navigation between screens
+- home screen opens
+
+10. Код
+- без хардкода размеров где возможно
+- комментарии только в сложных местах
+- clean composables
+- state hoisting
+- ui state через ViewModel
+
+11. Важно
+- все экраны должны быть максимально похожи на SVG/Figma
+- использовать Material3
+- современный UI
+- не делать примитивный студенческий интерфейс
+
+Нужно использовать МОИ PNG как реальные ресурсы интерфейса.
+
+В drawable лежат:
+
+cart.png  
+Catalog_frame.png
+heart.png
+home.png
+Home_frame.png
+icon_add_to_cart_for_product_card.png
+icon_in_cart_for_product_card.png
+Onboard-1_frame.png
+Onboard-2_frame.png
+Onboard-3_frame.png
+Popular_frame.png
+profile.png
+Sign in_frame.png
+sneakers 1.png
+sneakers 2.png
+sneakers 3.png
+sneakers_with_leg.png
+
+Нужно:
+
+
+1.Подключить их через painterResource / ImageVector
+2.Использовать именно их в UI, а не рисовать compose-фигурами
+
+Нужно ДОРАБОТАТЬ:
+
+Избранное
+На каждой карточке товара есть сердечко.
+При нажатии:
+товар добавляется в избранное
+повторное нажатие удаляет
+экран "Избранное" показывает список выбранных товаров
+если пусто -> текст "Нет избранных товаров"
+Корзина
+Сейчас корзина декоративная.
+
+Нужно:
+
+добавление товара в корзину
+изменение количества
+удаление товара
+подсчёт общей стоимости
+отображение total price
+если корзина пустая -> "Выберите товары"
+Нижнее меню
+Не отдельные Catalog/Popular вкладки снизу.
+
+Снизу должно быть ТОЛЬКО:
+
+Главная
+Избранное
+Корзина
+Профиль
+
+А уже внутри Главной:
+
+секция Каталог
+секция Популярное
+Полный перевод интерфейса на русский
+Сейчас часть UI на английском.
+
+Нужно:
+
+Главная
+Избранное
+Корзина
+Профиль
+Войти
+Электронная почта
+Пароль
+Популярное
+Каталог
+Добавить в корзину
+И т.д.
+Профиль
+Сделать простой экран:
+email
+пароль
+кнопка выхода
+Архитектура
+Нужно хранить состояние:
+корзины
+избранного
+
+через ViewModel + StateFlow / mutableStateListOf, чтобы данные обновлялись между экранами.
+
+
+После реализации:
+- проверь compileDebugKotlin
+- проверь connectedDebugAndroidTest
+- исправь все ошибки самостоятельно
+- покажи список созданных файлов
