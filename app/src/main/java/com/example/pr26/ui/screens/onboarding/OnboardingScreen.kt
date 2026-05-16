@@ -25,15 +25,9 @@ import kotlinx.coroutines.launch
 fun OnboardingScreen(
     navController: NavController
 ) {
-
     val items = FakeData.onboardingItems
 
-    val pagerState = rememberPagerState(
-        pageCount = {
-            items.size
-        }
-    )
-
+    val pagerState = rememberPagerState(pageCount = { items.size })
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -41,46 +35,30 @@ fun OnboardingScreen(
             .fillMaxSize()
             .safeDrawingPadding()
     ) {
-
         HorizontalPager(
             state = pagerState,
-
             modifier = Modifier.weight(1f)
         ) { page ->
-
-            OnboardingPage(
-                item = items[page]
-            )
+            OnboardingPage(item = items[page])
         }
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(
-                    horizontal = 24.dp,
-                    vertical = 32.dp
-                )
+                .padding(horizontal = 24.dp, vertical = 32.dp)
         ) {
-
-            PageIndicator(
-                pageCount = items.size,
-                currentPage = pagerState.currentPage
-            )
+            PageIndicator(pageCount = items.size, currentPage = pagerState.currentPage)
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 32.dp),
-
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Button(
                     onClick = {
                         navController.navigate(Screen.SignIn.route) {
-                            popUpTo(Screen.Onboarding.route) {
-                                inclusive = true
-                            }
+                            popUpTo(Screen.Onboarding.route) { inclusive = true }
                         }
                     }
                 ) {
@@ -89,34 +67,21 @@ fun OnboardingScreen(
 
                 Button(
                     onClick = {
-
                         if (pagerState.currentPage == items.lastIndex) {
-
                             navController.navigate(Screen.SignIn.route) {
-                                popUpTo(Screen.Onboarding.route) {
-                                    inclusive = true
-                                }
+                                popUpTo(Screen.Onboarding.route) { inclusive = true }
                             }
-
                         } else {
-
                             coroutineScope.launch {
-
-                                pagerState.animateScrollToPage(
-                                    pagerState.currentPage + 1
-                                )
+                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
                             }
                         }
                     }
                 ) {
-
-                    if (pagerState.currentPage == items.lastIndex) {
-                        Text(text = "Начать")
-                    } else {
-                        Text(text = "Далее")
-                    }
+                    Text(text = if (pagerState.currentPage == items.lastIndex) "Начать" else "Далее")
                 }
             }
         }
     }
 }
+

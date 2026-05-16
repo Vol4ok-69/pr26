@@ -1,200 +1,275 @@
-Читай задание и все приложенные PNG-макеты.
-прям тз для меня это "ПЗ.26 Наполнение приложения по тестам и в соответствии со структурой (1).docx" в корне проекта
-Нужно полностью сделать Android-приложение на Kotlin + Jetpack Compose.
-НЕ использовать XML/View API.
-Только современный Compose-подход.
+Ты продолжаешь существующий Android-проект интернет-магазина обуви.
 
-Технологии:
+Технологии строго:
 - Kotlin
 - Jetpack Compose
 - Material3
 - Navigation Compose
 - ViewModel
-- Room database
-- UI tests (Compose UI Test)
+- Room
+- StateFlow / mutableStateListOf
+- Без XML
+- Без View API
+- Только Compose
 
-Сделай структуру проекта сразу нормальной:
-- navigation
-- ui/screens
-- ui/components
-- ui/theme
-- data/local
-- data/model
-- viewmodel
+ВАЖНО:
+Нельзя ломать существующую структуру проекта.
+Нельзя создавать хаос.
+Нужно продолжать уже существующую архитектуру.
 
-Что нужно реализовать:
+НУЖНО ДОПИСАТЬ ПРОЕКТ ДО СОСТОЯНИЯ ПОЛНОГО СООТВЕТСТВИЯ МАКЕТАМ.
 
-1. Onboarding экраны
-- Onboard-1
-- Onboard-2
-- Onboard-3
-- horizontal pager
-- кнопки Next / Skip
-- индикаторы страниц
-- адаптивность portrait + landscape
+====================================================
+ГЛАВНОЕ ТРЕБОВАНИЕ
+====================================================
 
-2. Sign In экран
-- как в макете
-- email + password
-- валидация:
-  - пустые поля
-  - email format
-  - password min length
-- ошибки под полями
-- кнопка disabled если форма невалидна
+ВСЕ PNG ИСПОЛЬЗОВАТЬ КАК РЕАЛЬНЫЕ UI РЕСУРСЫ.
 
-3. Room Database
-- создать локальную Room БД
-- таблица пользователей
-- добавить 5 тестовых пользователей
-- авторизация проверяет пользователя через БД
+НЕ рисовать вместо них compose-иконки.
+НЕ заменять их Material Icons.
+Русский язык, кроме названий кроссовок и там, где это уместно
 
-4. Home экран
-- максимально похожий на макет
-- категории
+Использовать:
+- painterResource(...)
+- Image(...)
+
+====================================================
+PNG РЕСУРСЫ И ИХ НАЗНАЧЕНИЕ
+====================================================
+
+1. sneakers_1.png
+Использовать:
+- карточки товаров
 - popular items
-- карточки
-- bottom navigation
+- catalog items
+
+2. sneakers_2.png
+Использовать:
+- карточки товаров
+- popular items
+- catalog items
+
+3. sneakers_3.png
+Использовать:
+- карточки товаров
+- popular items
+- catalog items
+
+4. home_frame.png
+ЭТО РЕФЕРЕНС ГЛАВНОГО ЭКРАНА.(не использовать в качестве ресурса)
+Нужно повторить UI максимально близко.
+
+Home screen должен содержать:
+- верхний toolbar
+- заголовок "Главная"
 - search bar
-- все изображения в vector drawable или compose icons
+- filter button
+- категории
+- секцию "Популярное"
+- horizontal list товаров
+- секцию "Акции"
+- banner
+- bottom navigation
 
-5. Catalog экран
-- список товаров
-- lazy column/grid
-- фильтрация по категориям
-- переходы работают
+5. catalog_frame.png(не использовать в качестве ресурса)
+ЭТО РЕФЕРЕНС ЭКРАНА КАТАЛОГА.
 
-6. Popular экран
-- список популярных товаров
-- карточки
+Catalog screen:
+- title Outdoor
+- back button
+- category chips
+- grid товаров
+- 2 columns
+- product cards identical to design
+
+4. popular_frame.png(не использовать в качестве ресурса)
+ЭТО РЕФЕРЕНС ЭКРАНА ПОПУЛЯРНОГО.
+
+Popular screen:
+- title "Популярное"
+- favorite icon top-right
+- grid товаров
+- spacing identical to design
+
+5. home.png
+Использовать:
+- bottom navigation icon Home
+
+6. heart.png
+Использовать:
+- bottom nav favorites
+- favorite button on product cards
+
+7. cart.png
+Использовать:
+- bottom nav cart
+- cart button
+
+8. profile.png
+Использовать:
+- bottom nav profile
+
+9. icon_add_to_cart_for_product_card.png
+Использовать:
+- кнопка "+" на карточке товара
+
+10. icon_in_cart_for_product_card.png
+Использовать:
+- состояние "товар уже в корзине"
+
+====================================================
+ОБЩИЙ СТИЛЬ UI
+====================================================
+
+Стиль:
+- светлый минимализм
+- rounded corners 16-28dp
+- soft shadows
+- очень светлый серый background
+- голубой акцент
+- spacing как в iOS/Dribbble UI
+
+НЕ делать:
+- стандартный Material layout
+- ugly compose demo ui
+- debug style
+- sharp corners
+- default buttons
+
+====================================================
+ЭКРАНЫ
+====================================================
+
+НУЖНО СДЕЛАТЬ:
+
+1. Home
+- похож максимально на home_frame
+- категории
+- popular section
+- sale banner
+- bottom nav
+
+2. Catalog
+- grid
+- filters
+- product cards
+
+3. Popular
+- grid товаров
 - адаптивность
 
-7. Навигация
-- все переходы между экранами работают
-- back stack работает корректно
+4. Favorites
+- список избранных
+- empty state:
+  "Нет избранных товаров"
 
-8. Адаптивность
+5. Cart
+Нужно реализовать:
+- add to cart
+- quantity selector
+- remove item
+- total price
+- empty state:
+  "Выберите товары"
+
+6. Profile
+- email
+- password
+
+====================================================
+СОСТОЯНИЕ
+====================================================
+
+Использовать:
+- ViewModel
+- StateFlow
+- mutableStateListOf
+
+Хранить:
+- favorites
+- cart
+- selected categories
+- auth state
+
+====================================================
+ТЕСТОВЫЕ ДАННЫЕ
+====================================================
+
+Создать FakeData:
+- категории
+- товары
+- onboarding items
+
+Товары:
+- Nike Air Max
+- цена как в макете
+- использовать sneakers_1
+
+====================================================
+ROOM
+====================================================
+
+Создать:
+- UserEntity
+- UserDao
+- AppDatabase
+
+Добавить:
+- 5 тестовых пользователей
+
+Авторизация:
+- проверка через Room
+
+====================================================
+НАВИГАЦИЯ
+====================================================
+
+Bottom nav только:
+- Главная
+- Избранное
+- Корзина
+- Профиль
+
+НЕ делать отдельный tab Catalog/Popular в bottom bar.
+
+Catalog и Popular открываются ИЗ Home.
+
+====================================================
+АДАПТИВНОСТЬ
+====================================================
+
+Обязательно:
+- safeDrawingPadding()
+- verticalScroll/lazy
+- landscape support
 - ничего не выходит за экран
-- использовать:
-  - safeDrawingPadding()
-  - WindowSizeClass при необходимости
-  - verticalScroll/lazy lists
-- portrait и landscape должны выглядеть нормально
 
-9. Тесты
-Сделать Compose UI tests:
+====================================================
+ТЕСТЫ
+====================================================
+
+Compose UI tests:
 - onboarding navigation
 - validation sign in
 - successful login
-- navigation between screens
-- home screen opens
+- navigation
+- home opens
 
-10. Код
-- без хардкода размеров где возможно
-- комментарии только в сложных местах
+====================================================
+ВАЖНО
+====================================================
+
+Нельзя:
+- удалять существующую архитектуру
+- переписывать проект хаотично
+- использовать XML
+- использовать ViewBinding
+
+Нужно:
 - clean composables
 - state hoisting
-- ui state через ViewModel
+- reusable components
+- Material3
+- production-like ui
 
-11. Важно
-- все экраны должны быть максимально похожи на SVG/Figma
-- использовать Material3
-- современный UI
-- не делать примитивный студенческий интерфейс
-
-Нужно использовать МОИ PNG как реальные ресурсы интерфейса.
-
-В drawable лежат:
-
-cart.png  
-Catalog_frame.png
-heart.png
-home.png
-Home_frame.png
-icon_add_to_cart_for_product_card.png
-icon_in_cart_for_product_card.png
-Onboard-1_frame.png
-Onboard-2_frame.png
-Onboard-3_frame.png
-Popular_frame.png
-profile.png
-Sign in_frame.png
-sneakers 1.png
-sneakers 2.png
-sneakers 3.png
-sneakers_with_leg.png
-
-Нужно:
-
-
-1.Подключить их через painterResource / ImageVector
-2.Использовать именно их в UI, а не рисовать compose-фигурами
-
-Нужно ДОРАБОТАТЬ:
-
-Избранное
-На каждой карточке товара есть сердечко.
-При нажатии:
-товар добавляется в избранное
-повторное нажатие удаляет
-экран "Избранное" показывает список выбранных товаров
-если пусто -> текст "Нет избранных товаров"
-Корзина
-Сейчас корзина декоративная.
-
-Нужно:
-
-добавление товара в корзину
-изменение количества
-удаление товара
-подсчёт общей стоимости
-отображение total price
-если корзина пустая -> "Выберите товары"
-Нижнее меню
-Не отдельные Catalog/Popular вкладки снизу.
-
-Снизу должно быть ТОЛЬКО:
-
-Главная
-Избранное
-Корзина
-Профиль
-
-А уже внутри Главной:
-
-секция Каталог
-секция Популярное
-Полный перевод интерфейса на русский
-Сейчас часть UI на английском.
-
-Нужно:
-
-Главная
-Избранное
-Корзина
-Профиль
-Войти
-Электронная почта
-Пароль
-Популярное
-Каталог
-Добавить в корзину
-И т.д.
-Профиль
-Сделать простой экран:
-email
-пароль
-кнопка выхода
-Архитектура
-Нужно хранить состояние:
-корзины
-избранного
-
-через ViewModel + StateFlow / mutableStateListOf, чтобы данные обновлялись между экранами.
-
-
-После реализации:
-- проверь compileDebugKotlin
-- проверь connectedDebugAndroidTest
-- исправь все ошибки самостоятельно
-- покажи список созданных файлов
+Все тексты интерфейса на русском.
