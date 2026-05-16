@@ -42,7 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
 
                     override fun onOpen(db: SupportSQLiteDatabase) {
                         super.onOpen(db)
-                        // Ensure users exist even if DB was reused between test runs.
+
                         prepopulate(db, replace = false)
                     }
                 }

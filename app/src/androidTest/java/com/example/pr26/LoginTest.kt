@@ -25,7 +25,6 @@ class LoginTest {
         composeRule.onNodeWithTag("password").performTextInput("123456")
         composeRule.onNodeWithTag("sign_in_btn").performScrollTo().performClick()
 
-        // Wait for async sign-in + navigation.
         repeat(50) {
             composeRule.waitForIdle()
             try {

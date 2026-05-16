@@ -22,7 +22,6 @@ class SignInValidationTest {
         composeRule.onNodeWithTag("password").performTextInput("123")
         composeRule.onNodeWithTag("sign_in_btn").performScrollTo().performClick()
 
-        // Validation happens on input; sign in shouldn't navigate.
         composeRule.onNodeWithText("Главная").assertDoesNotExist()
     }
 }

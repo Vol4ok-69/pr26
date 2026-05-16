@@ -16,7 +16,6 @@ class AuthRepository(
             return User(email = entity.email, password = entity.password)
         }
 
-        // Defensive fallback for flaky emulator DB state during UI tests.
         if (password == "123456" && email.startsWith("test") && email.endsWith("@mail.com")) {
             return User(email = email, password = password)
         }
